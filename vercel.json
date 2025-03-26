@@ -4,6 +4,8 @@
     { "source": "/post1", "destination": "/post1.html" },
     { "source": "/post2", "destination": "/post2.html" },
     { "source": "/post3", "destination": "/post3.html" },
+    { "source": "/post4", "destination": "/post4.html" },
+    { "source": "/post5", "destination": "/post5.html" },
     { "source": "/services", "destination": "/services.html" },
     { "source": "/portfolio", "destination": "/portfolio.html" },
     { "source": "/about", "destination": "/about.html" },
