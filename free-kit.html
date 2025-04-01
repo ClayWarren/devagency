@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Get Your Free Custom Software Starter Kit</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBMF4BVRZC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YBMF4BVRZC');
+  </script>
   <style>
     body { background: #1A2526; color: white; font-family: Arial, sans-serif; text-align: center; padding: 20px; margin: 0; }
     h1 { color: #00C4B4; font-size: 24px; }
@@ -29,6 +36,10 @@
     document.getElementById('leadForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
+      gtag('event', 'form_submission', {
+        'event_category': 'Lead',
+        'event_label': 'Free Kit Form'
+      });
       const response = await fetch('/api/submit', {
         method: 'POST',
         body: JSON.stringify({
