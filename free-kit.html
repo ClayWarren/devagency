@@ -8,8 +8,15 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    console.log('GA script loaded');
     gtag('js', new Date());
     gtag('config', 'G-YBMF4BVRZC');
+    console.log('GA configured with G-YBMF4BVRZC');
+    // Debug event to test GA
+    gtag('event', 'page_load_debug', {
+      'event_category': 'Debug',
+      'event_label': 'Free Kit Page Load'
+    });
   </script>
   <style>
     body { background: #1A2526; color: white; font-family: Arial, sans-serif; text-align: center; padding: 20px; margin: 0; }
@@ -35,11 +42,13 @@
   <script>
     document.getElementById('leadForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      console.log('Form submit triggered');
       const formData = new FormData(e.target);
       gtag('event', 'form_submission', {
         'event_category': 'Lead',
         'event_label': 'Free Kit Form'
       });
+      console.log('GA form_submission event sent');
       const response = await fetch('/api/submit', {
         method: 'POST',
         body: JSON.stringify({
@@ -48,9 +57,13 @@
         }),
         headers: { 'Content-Type': 'application/json' }
       });
+      console.log('API response:', response.status);
       const data = await response.json();
       if (response.ok) {
+        console.log('Redirecting to thank-you');
         window.location.href = `/thank-you?email=${encodeURIComponent(data.email)}`;
+      } else {
+        console.error('API failed:', data);
       }
     });
   </script>
