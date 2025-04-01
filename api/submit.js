@@ -15,8 +15,8 @@ module.exports = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: 'hello@adinkra.studio',
-      to: 'hello@adinkra.studio',
+      from: 'clay@adinkra.studio',
+      to: 'clay@adinkra.studio',
       subject: `New Lead: ${email}`,
       text: `Email: ${email}\nName: ${name || 'Not provided'}\nReply with the kit!`
     });
