@@ -1,10 +1,31 @@
 const nodemailer = require('nodemailer');
+const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const { email, name } = req.body;
+
+    // Log to HubSpot
+    const hubspotUrl = 'https://api.hubapi.com/crm/v3/objects/contacts';
+    const hubspotData = {
+      properties: {
+        email: email,
+        firstname: name || '',
+        lifecyclestage: 'lead'
+      }
+    };
+    await fetch(hubspotUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.HUBSPOT_API_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(hubspotData)
+    });
+
+    // Send PDF email
     const transporter = nodemailer.createTransport({
-      host: 'smtp.zoho.com', // or 'smtp.gmail.com' if using Gmail
+      host: 'smtp.zoho.com', // or 'smtp.gmail.com'
       port: 587,
       secure: false,
       auth: {
@@ -12,21 +33,17 @@ module.exports = async (req, res) => {
         pass: process.env.ZOHO_PASSWORD // or GMAIL_PASSWORD
       }
     });
-
-    // Send PDF to lead
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
       to: email,
       subject: 'Your Custom Software Starter Kit',
-      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nBook a quick chat: https://calendly.com/claydertot3/30min\n\n- Clay`,
+      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nBook a quick chat: https://calendly.com/clay-adinkra/15min\n\n- Clay`,
     });
-
-    // Notify Clay
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
       to: 'clay@adinkra.studio',
       subject: `New Lead: ${email}`,
-      text: `Email: ${email}\nName: ${name || 'Not provided'}\nLead got the kit—follow up!`
+      text: `Email: ${email}\nName: ${name || 'Not provided'}\nLogged in HubSpot—follow up!`
     });
 
     res.status(200).json({ message: 'Success' });
