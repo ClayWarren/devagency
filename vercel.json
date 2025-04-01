@@ -11,7 +11,7 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/free-kit", "destination": "/free-kit.html" },
-    { "source": "/thank-you", "destination": "/thank-you.html" }
+    { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/api/track", "destination": "/api/track.js" }
   ]
 }
