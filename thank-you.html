@@ -8,19 +8,17 @@
     body { background: #1A2526; color: white; font-family: Arial, sans-serif; text-align: center; padding: 20px; margin: 0; }
     h1 { color: #00C4B4; font-size: 24px; }
     p { font-size: 16px; max-width: 600px; margin: 20px auto; }
-    a { color: #00C4B4; text-decoration: none; }
-    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <h1>Thanks for Grabbing the Kit!</h1>
-  <p>Check your email for the PDF—it’s on its way! What’s next?</p>
-  <p><a href="https://calendly.com/clay-adinkra/15min">Book a free 15-min consult</a> to plan your project, or see our <a href="/portfolio">latest work</a>.</p>
+  <p>Check your email for the PDF—it’s on its way!</p>
+  <p>We’ll follow up at <span id="email">clay@adinkra.studio</span> soon!</p>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
     if (email) {
-      document.write(`<p>We’ll follow up at ${decodeURIComponent(email)} soon!</p>`);
+      document.getElementById('email').textContent = 'clay@adinkra.studio';
     }
   </script>
 </body>
