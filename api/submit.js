@@ -46,8 +46,7 @@ module.exports = async (req, res) => {
       text: `Email: ${email}\nName: ${name || 'Not provided'}\nLogged in HubSpot—follow up!`
     });
 
-    // Redirect to thank-you page
-    res.redirect(302, `/thank-you?email=${encodeURIComponent(email)}`);
+    res.status(200).json({ message: 'Success', email: email });
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }
