@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
       secure: false,
       auth: {
         user: 'clay@adinkra.studio',
-        pass: process.env.ZOHO_PASSWORD // or GMAIL_PASSWORD
+        pass: process.env.ZOHO_PASSWORD
       }
     });
     await transporter.sendMail({
@@ -46,7 +46,8 @@ module.exports = async (req, res) => {
       text: `Email: ${email}\nName: ${name || 'Not provided'}\nLogged in HubSpot—follow up!`
     });
 
-    res.status(200).json({ message: 'Success' });
+    // Redirect to thank-you page
+    res.redirect(302, `/thank-you?email=${encodeURIComponent(email)}`);
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }
