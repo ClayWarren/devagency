@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
       from: 'clay@adinkra.studio',
       to: email,
       subject: 'Your Custom Software Starter Kit',
-      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nWhat’s your next project? Reply or book a quick chat: clay@adinkra.studio\n\n- Clay`,
+      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nBook a quick chat: https://calendly.com/claydertot3/30min\n\n- Clay`,
     });
 
     // Notify Clay
