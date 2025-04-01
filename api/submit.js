@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
       port: 587,
       secure: false,
       auth: {
-        user: 'hello@adinkra.studio',
+        user: 'clay@adinkra.studio',
         pass: process.env.ZOHO_PASSWORD
       }
     });
