@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
       from: 'clay@adinkra.studio',
       to: email,
       subject: 'Your Custom Software Starter Kit',
-      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nBook a quick chat: https://calendly.com/clay-adinkra/15min\n\n- Clay`,
+      text: `Hi ${name || 'there'},\n\nThanks for grabbing the kit! Download it here: https://adinkra.studio/starter-kit.pdf\n\nBook a quick chat: https://calendly.com/claydertot3/30min\n\n- Clay`,
     });
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
