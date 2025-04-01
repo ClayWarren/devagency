@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify(hubspotData)
     });
 
-    // Send PDF email with Calendly
+    // Send PDF email with tracking link
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.com', // or 'smtp.gmail.com'
       port: 587,
@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
       from: 'clay@adinkra.studio',
       to: email,
       subject: 'Your Custom Software Starter Kit',
-      html: `Hi ${name || 'there'},<br><br>Thanks for grabbing the kit! Download it here: <a href="https://adinkra.studio/starter-kit.pdf" onclick="gtag('event', 'pdf_download', {'event_category': 'Lead', 'event_label': 'Free Kit PDF'});">Click here</a><br><br>Book a quick chat: <a href="https://calendly.com/clay-adinkra/15min">https://calendly.com/clay-adinkra/15min</a><br><br>- Clay`
+      html: `Hi ${name || 'there'},<br><br>Thanks for grabbing the kit! Download it here: <a href="https://adinkra.studio/api/track?email=${encodeURIComponent(email)}">Click here</a><br><br>Book a quick chat: <a href="https://calendly.com/claydertot3/30min">https://calendly.com/claydertot3/30min</a><br><br>- Clay`
     });
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
