@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify(hubspotData)
     });
 
-    // Send PDF email with tracking link
+    // Send PDF email with tracking pixel
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.com', // or 'smtp.gmail.com'
       port: 587,
@@ -33,11 +33,12 @@ module.exports = async (req, res) => {
         pass: process.env.ZOHO_PASSWORD
       }
     });
+    const trackingPixel = `<img src="https://adinkra.studio/api/track-open?email=${encodeURIComponent(email)}" width="1" height="1" style="display:none">`;
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
       to: email,
       subject: 'Your Custom Software Starter Kit',
-      html: `Hi ${name || 'there'},<br><br>Thanks for grabbing the kit! Download it here: <a href="https://adinkra.studio/api/track?email=${encodeURIComponent(email)}">Click here</a><br><br>Book a quick chat: <a href="https://calendly.com/claydertot3/30min">https://calendly.com/claydertot3/30min</a><br><br>- Clay`
+      html: `Hi ${name || 'there'},<br><br>Thanks for grabbing the kit! Download it here: <a href="https://adinkra.studio/api/track?email=${encodeURIComponent(email)}">Click here</a><br><br>Book a quick chat: <a href="https://calendly.com/claydertot3/30min">https://calendly.com/claydertot3/30min</a><br><br>- Clay${trackingPixel}`
     });
     await transporter.sendMail({
       from: 'clay@adinkra.studio',
