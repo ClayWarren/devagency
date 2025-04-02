@@ -12,6 +12,7 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/free-kit", "destination": "/free-kit.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
-    { "source": "/api/track", "destination": "/api/track.js" }
+    { "source": "/api/track", "destination": "/api/track.js" },
+    { "source": "/api/track-open", "destination": "/api/track-open.js" }
   ]
 }
